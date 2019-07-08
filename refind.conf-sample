@@ -515,6 +515,18 @@ timeout 20
 #
 #csr_values 10,77
 
+# Uses short text labels (titles) for menu entries.  Titles are 
+# normally prefixed by the word "Boot" and postfixed by the volume label.
+# Uncommenting this line removes these additions.  For example, if a
+# manual menu entry is define as:
+#
+#   menuentry "My macOS" { ... }
+#
+# Then only "My macOS" will appear as title text to describe the entry
+# when it is selected.
+#
+#short_labels
+
 # Include a secondary configuration file within this one. This secondary
 # file is loaded as if its options appeared at the point of the "include"
 # token itself, so if you want to override a setting in the main file,

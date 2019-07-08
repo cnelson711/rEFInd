@@ -787,6 +787,8 @@ VOID ReadConfig(CHAR16 *FileName)
            if (i > 32)
               i = 32;
            GlobalConfig.MouseSpeed = i;
+        } else if (MyStriCmp(TokenList[0], L"short_labels")) {
+           GlobalConfig.ShortLabels = TRUE;
         }
 
         FreeTokenLine(&TokenList, &TokenCount);
