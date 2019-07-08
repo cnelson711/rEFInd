@@ -788,7 +788,7 @@ VOID ReadConfig(CHAR16 *FileName)
               i = 32;
            GlobalConfig.MouseSpeed = i;
         } else if (MyStriCmp(TokenList[0], L"short_labels")) {
-           GlobalConfig.ShortLabels = TRUE;
+           GlobalConfig.ShortLabels = HandleBoolean(TokenList, TokenCount);
         }
 
         FreeTokenLine(&TokenList, &TokenCount);
@@ -830,7 +830,10 @@ static VOID AddSubmenu(LOADER_ENTRY *Entry, REFIT_FILE *File, REFIT_VOLUME *Volu
             if ((Volume != NULL) && (Volume->IsReadable) && (Volume->RootDir)) {
                MyFreePool(SubEntry->me.Title);
                SubEntry->me.Title        = AllocateZeroPool(256 * sizeof(CHAR16));
-               SPrint(SubEntry->me.Title, 255, L"Boot %s from %s", (Title != NULL) ? Title : L"Unknown", Volume->VolName);
+               if (GlobalConfig.ShortLabels)
+                   SPrint(SubEntry->me.Title, 255, L"%s ", (Title != NULL) ? Title : L"Unknown");
+               else
+                   SPrint(SubEntry->me.Title, 255, L"Boot %s from %s ", (Title != NULL) ? Title : L"Unknown", Volume->VolName);
                SubEntry->me.BadgeImage   = Volume->VolBadgeImage;
                SubEntry->Volume          = Volume;
             } // if volume is readable

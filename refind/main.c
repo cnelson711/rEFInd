@@ -1142,7 +1142,7 @@ static LOADER_ENTRY * AddLoaderEntry(IN CHAR16 *LoaderPath, IN CHAR16 *LoaderTit
         // name is identical except for something added to the end (e.g., VolB1 vs. VolB12).
         // Note: Volume->VolName will be NULL for network boot programs.
         if (GlobalConfig.ShortLabels)
-            SPrint(Entry->me.Title, 255, L"%s", (LoaderTitle != NULL) ? LoaderTitle : LoaderPath);
+            SPrint(Entry->me.Title, 255, L"%s ", (LoaderTitle != NULL) ? LoaderTitle : LoaderPath);
         else if ((Volume->VolName) && (!MyStriCmp(Volume->VolName, L"Recovery HD")))
             SPrint(Entry->me.Title, 255, L"Boot %s from %s ", (LoaderTitle != NULL) ? LoaderTitle : LoaderPath, Volume->VolName);
         else
