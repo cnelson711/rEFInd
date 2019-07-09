@@ -468,7 +468,9 @@ static LEGACY_ENTRY * AddLegacyEntry(IN CHAR16 *LoaderTitle, IN REFIT_VOLUME *Vo
         VolDesc = (Volume->DiskKind == DISK_KIND_OPTICAL) ? L"CD" : L"HD";
 
     LegacyTitle = AllocateZeroPool(256 * sizeof(CHAR16));
-    if (LegacyTitle != NULL)
+    if (GlobalConfig.ShortLabels)
+       SPrint(LegacyTitle, 255, L"%s", LoaderTitle);
+    else if (LegacyTitle != NULL)
        SPrint(LegacyTitle, 255, L"Boot %s from %s", LoaderTitle, VolDesc);
     if (IsInSubstring(LegacyTitle, GlobalConfig.DontScanVolumes)) {
        MyFreePool(LegacyTitle);
