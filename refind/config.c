@@ -831,9 +831,9 @@ static VOID AddSubmenu(LOADER_ENTRY *Entry, REFIT_FILE *File, REFIT_VOLUME *Volu
                MyFreePool(SubEntry->me.Title);
                SubEntry->me.Title        = AllocateZeroPool(256 * sizeof(CHAR16));
                if (GlobalConfig.ShortLabels)
-                   SPrint(SubEntry->me.Title, 255, L"%s ", (Title != NULL) ? Title : L"Unknown");
-               else
-                   SPrint(SubEntry->me.Title, 255, L"Boot %s from %s ", (Title != NULL) ? Title : L"Unknown", Volume->VolName);
+                   SPrint(SubEntry->me.Title, 255, L"%s", (Title != NULL) ? Title : L"Unknown");
+	       else
+                   SPrint(SubEntry->me.Title, 255, L"Boot %s from %s", (Title != NULL) ? Title : L"Unknown", Volume->VolName);
                SubEntry->me.BadgeImage   = Volume->VolBadgeImage;
                SubEntry->Volume          = Volume;
             } // if volume is readable
@@ -896,7 +896,7 @@ static LOADER_ENTRY * AddStanzaEntries(REFIT_FILE *File, REFIT_VOLUME *Volume, C
    Entry->Title           = StrDuplicate(Title);
    Entry->me.Title        = AllocateZeroPool(256 * sizeof(CHAR16));
    if (GlobalConfig.ShortLabels)
-      SPrint(Entry->me.Title, 255, L"%s ", (Title != NULL) ? Title : L"Unknown");
+      SPrint(Entry->me.Title, 255, L"%s", (Title != NULL) ? Title : L"Unknown");
    else
       SPrint(Entry->me.Title, 255, L"Boot %s from %s", (Title != NULL) ? Title : L"Unknown", CurrentVolume->VolName);
       
